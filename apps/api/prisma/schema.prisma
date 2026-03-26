@@ -1,0 +1,67 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Todo {
+  id        String    @id @default(uuid())
+  title     String
+  status    String    @default("todo")
+  priority  String    @default("none")
+  dueDate   DateTime?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+}
+
+model Note {
+  id        String   @id @default(uuid())
+  title     String
+  content   String   @default("")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  isPinned  Boolean  @default(false)
+  tags      String[]
+}
+
+enum SummaryProvider {
+  CLAUDE
+  OPENAI
+  GEMINI
+}
+
+enum SummaryCategory {
+  TECH
+  ECONOMY
+  ENTERTAINMENT
+  EDUCATION
+  OTHER
+}
+
+enum SummaryStatus {
+  PENDING
+  PROCESSING
+  DONE
+  ERROR
+}
+
+model Summary {
+  id        String          @id @default(uuid())
+  url       String
+  title     String          @default("")
+  summary   String          @default("") @db.Text
+  memo      String          @default("") @db.Text
+  category  SummaryCategory @default(OTHER)
+  status    SummaryStatus   @default(PENDING)
+  provider  SummaryProvider @default(CLAUDE)
+  errorMsg  String?
+  createdAt DateTime        @default(now())
+  updatedAt DateTime        @updatedAt
+
+  @@index([category])
+  @@index([status])
+  @@index([createdAt(sort: Desc)])
+}

@@ -1,0 +1,1 @@
+ALTER TYPE "SummaryProvider" ADD VALUE IF NOT EXISTS 'GEMINI';

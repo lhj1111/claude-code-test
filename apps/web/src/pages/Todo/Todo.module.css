@@ -1,0 +1,324 @@
+/* ── 페이지 레이아웃 ── */
+.page {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 52px);
+  overflow: hidden;
+  padding: 0;
+}
+
+/* ── 상단 바 (제목 + 폼) ── */
+.topBar {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1rem 1.75rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+  flex-shrink: 0;
+}
+
+.topLeft {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.progressWrap {
+  position: relative;
+  width: 120px;
+  height: 4px;
+  background: var(--border);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.progressBar {
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  background: var(--green, #22c55e);
+  border-radius: 2px;
+  transition: width 0.4s ease;
+}
+
+.progressLabel {
+  position: absolute;
+  top: 8px;
+  left: 0;
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.form {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+}
+
+.input {
+  flex: 1;
+  padding: 8px 14px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text);
+  font-size: 0.88rem;
+  transition: border-color 0.15s;
+}
+.input:focus { outline: none; border-color: var(--accent); background: var(--surface); }
+.input::placeholder { color: var(--text-muted); }
+
+.priorityPicker {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 7px 10px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.formPriority {
+  background: transparent;
+  border: none;
+  color: var(--text);
+  font-size: 0.82rem;
+  cursor: pointer;
+  outline: none;
+  padding: 0;
+}
+
+.addBtn {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 8px 18px;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: opacity 0.15s;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.addBtn:hover { opacity: 0.85; }
+.addBtn:disabled { opacity: 0.45; cursor: not-allowed; }
+
+/* ── 툴바 ── */
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0.625rem 1.75rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg);
+  flex-shrink: 0;
+  flex-wrap: wrap;
+}
+
+.searchWrap { position: relative; display: flex; align-items: center; }
+.searchIcon { position: absolute; left: 9px; color: var(--text-muted); pointer-events: none; }
+
+.searchInput {
+  padding: 6px 10px 6px 30px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  color: var(--text);
+  font-size: 0.82rem;
+  width: 180px;
+}
+.searchInput:focus { outline: none; border-color: var(--accent); }
+
+.filterGroup {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.filterBtn {
+  padding: 5px 11px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  cursor: pointer;
+  transition: all 0.12s;
+}
+.filterBtn:hover { border-color: var(--accent); color: var(--text); }
+.filterActive {
+  background: var(--accent);
+  color: #fff !important;
+  border-color: var(--accent) !important;
+}
+
+.prioritySelect {
+  padding: 5px 10px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  color: var(--text);
+  font-size: 0.78rem;
+}
+
+/* ── 칸반 보드 ── */
+.loading { color: var(--text-muted); padding: 2rem 1.75rem; }
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* ── 컬럼 ── */
+.column {
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid var(--border);
+  overflow: hidden;
+}
+.column:last-child { border-right: none; }
+
+/* 컬럼별 헤더 색상 */
+.colTodo .colHeader        { border-top: 2px solid var(--text-muted); }
+.colInProgress .colHeader  { border-top: 2px solid #cc9e5c; }
+.colDone .colHeader        { border-top: 2px solid var(--green, #22c55e); }
+
+.colHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+  flex-shrink: 0;
+}
+
+.colLabel {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.colTodo .colLabel        { color: var(--text-muted); }
+.colInProgress .colLabel  { color: #cc9e5c; }
+.colDone .colLabel        { color: var(--green, #22c55e); }
+
+.colCount {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1px 8px;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.colBody {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0.625rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  background: var(--bg);
+}
+
+.emptyCol {
+  padding: 1.5rem 1rem;
+  text-align: center;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  opacity: 0.5;
+  border: 1.5px dashed var(--border);
+  border-radius: 8px;
+}
+
+/* ── 카드 ── */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 3px solid;
+  border-radius: 8px;
+  padding: 0.75rem 0.875rem;
+  transition: box-shadow 0.15s, transform 0.1s;
+  cursor: default;
+}
+.card:hover {
+  box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+  transform: translateY(-1px);
+}
+
+.cardTitle {
+  font-size: 0.85rem;
+  line-height: 1.45;
+  margin-bottom: 0.625rem;
+  word-break: break-word;
+}
+
+.cardFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+}
+
+.priorityBadge {
+  padding: 2px 6px;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.12s;
+}
+.priorityBadge:hover { border-color: currentColor; }
+
+.cardActions {
+  display: flex;
+  gap: 3px;
+}
+
+.actionBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 6px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  transition: all 0.12s;
+  flex-shrink: 0;
+}
+.actionBtn:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
+.actionBtn:disabled { opacity: 0.35; cursor: not-allowed; }
+
+.deleteBtnCard:hover { background: #cc3333 !important; border-color: #cc3333 !important; }
+
+@media (max-width: 700px) {
+  .board { grid-template-columns: 1fr; overflow-y: auto; }
+  .topBar { flex-direction: column; align-items: stretch; }
+  .form { flex-wrap: wrap; }
+}

@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(NOTE_ID=\"38ceadf1-c06e-4301-ace0-6b2fa33d89f1\")",
+      "Bash(curl -s -X PATCH \"http://localhost:3000/api/notes/$NOTE_ID\" -H \"Content-Type: application/json\" -d '{\"\"title\"\":\"\"Updated Note\"\"}')",
+      "Bash(curl -s -X DELETE \"http://localhost:3000/api/notes/$NOTE_ID\")",
+      "Bash(pkill -f \"tsx watch\")",
+      "Bash(taskkill /PID 12660 /F)",
+      "Bash(cmd /c \"taskkill /PID 12660 /F\")",
+      "Bash(cmd /c \"taskkill /F /PID 12660\")",
+      "Bash(kill -9 2087 2062)"
+    ],
+    "defaultMode": "bypassPermissions"
+  },
+  "agent": "team-lead",
+  "enabledPlugins": {
+    "skill-creator@claude-plugins-official": true
+  }
+}
