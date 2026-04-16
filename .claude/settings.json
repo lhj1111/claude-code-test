@@ -8,12 +8,13 @@
       "Bash(taskkill /PID 12660 /F)",
       "Bash(cmd /c \"taskkill /PID 12660 /F\")",
       "Bash(cmd /c \"taskkill /F /PID 12660\")",
-      "Bash(kill -9 2087 2062)"
+      "Bash(kill -9 2087 2062)",
+      "Edit(/.claude/skills/github/**)"
     ],
     "defaultMode": "bypassPermissions"
   },
-  "agent": "team-lead",
   "enabledPlugins": {
     "skill-creator@claude-plugins-official": true
-  }
+  },
+  "agent": "team-lead"
 }

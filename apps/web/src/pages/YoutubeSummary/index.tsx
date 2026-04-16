@@ -364,12 +364,16 @@ export default function YoutubeSummary() {
 
           {checkedIds.size > 0 && (
             <div className={styles.actionBar}>
-              <span>{checkedIds.size}개 선택됨</span>
+              <div className={styles.actionBarInfo}>
+                <span className={styles.actionBarCount}>{checkedIds.size}</span>
+                개 항목 선택됨
+              </div>
               <button
+                className={styles.actionBarDeleteBtn}
                 onClick={() => bulkDeleteMut.mutate(Array.from(checkedIds))}
                 disabled={bulkDeleteMut.isPending}
               >
-                일괄 삭제 🗑
+                ⚠ {bulkDeleteMut.isPending ? '삭제 중...' : '일괄 삭제'}
               </button>
             </div>
           )}
