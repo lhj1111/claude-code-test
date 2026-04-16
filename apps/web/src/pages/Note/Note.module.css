@@ -25,24 +25,24 @@
 .sidebarTitle {
   font-size: 0.95rem;
   font-weight: 700;
+  font-family: var(--font-display);
 }
 
 .newBtn {
   width: 28px; height: 28px;
-  border-radius: 6px;
+  border-radius: 3px;
   border: 1px solid var(--border);
   background: var(--surface2);
   color: var(--text);
   font-size: 1.2rem;
   line-height: 1;
   display: flex; align-items: center; justify-content: center;
-  transition: all var(--dur-fast);
+  transition: background var(--dur-fast), border-color var(--dur-fast);
 }
 .newBtn:hover {
-  background: var(--grad-accent);
+  background: var(--accent);
   color: #fff;
   border-color: transparent;
-  box-shadow: var(--glow-accent);
 }
 
 .searchWrap {
@@ -65,15 +65,14 @@
   padding: 6px 10px 6px 28px;
   background: var(--surface2);
   border: 1px solid var(--border);
-  border-radius: 6px;
+  border-radius: 3px;
   color: var(--text);
   font-size: 0.82rem;
-  transition: border-color var(--dur-normal), box-shadow var(--dur-normal);
+  transition: border-color var(--dur-normal);
 }
 .searchInput:focus {
   outline: none;
   border-color: var(--accent);
-  box-shadow: 0 0 0 3px var(--accent-dim);
 }
 
 .list {
@@ -88,19 +87,18 @@
 
 .item {
   padding: 0.75rem 1rem;
-  border-radius: 8px;
+  border-radius: 6px;
   border: 1px solid transparent;
   cursor: pointer;
-  transition: all var(--dur-normal);
+  transition: background var(--dur-normal), border-color var(--dur-normal);
 }
 .item:hover {
   background: var(--surface2);
   border-color: var(--border);
 }
 .itemActive {
-  background: var(--grad-surface);
+  background: var(--surface2);
   border: 1px solid var(--border-bright);
-  box-shadow: var(--glow-accent);
 }
 
 .itemTitle {
@@ -110,6 +108,7 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  font-family: var(--font-body);
 }
 
 .itemDate {
@@ -117,6 +116,7 @@
   font-size: 0.72rem;
   color: var(--text-muted);
   margin-top: 2px;
+  font-family: var(--font-display);
 }
 
 .loading, .empty {
@@ -138,7 +138,7 @@
   padding: 5px 8px;
   background: var(--surface2);
   border: 1px solid var(--border);
-  border-radius: 6px;
+  border-radius: 3px;
   color: var(--text);
   font-size: 0.78rem;
 }
@@ -163,8 +163,9 @@
   padding: 1px 6px;
   background: var(--accent-dim);
   color: var(--accent);
-  border-radius: 10px;
+  border-radius: 3px;
   font-size: 0.68rem;
+  font-family: var(--font-display);
 }
 
 .editor {
@@ -187,20 +188,20 @@
 
 .newBtnLarge {
   padding: 10px 24px;
-  background: var(--grad-accent);
+  background: var(--accent);
   color: #fff;
   border: none;
-  border-radius: 8px;
+  border-radius: 3px;
   font-size: 0.88rem;
   font-weight: 600;
+  font-family: var(--font-display);
   display: flex;
   align-items: center;
   gap: 6px;
-  transition: box-shadow var(--dur-normal), transform var(--dur-fast);
+  transition: background var(--dur-normal);
 }
 .newBtnLarge:hover {
-  box-shadow: var(--glow-accent);
-  transform: translateY(-2px);
+  background: var(--accent2);
 }
 
 .editorHeader {
@@ -233,31 +234,31 @@
 
 .saveBtn {
   padding: 6px 16px;
-  background: var(--grad-accent);
+  background: var(--accent);
   color: #fff;
   border: none;
-  border-radius: 6px;
+  border-radius: 3px;
   font-size: 0.82rem;
   font-weight: 600;
-  transition: box-shadow var(--dur-normal), transform var(--dur-fast);
+  font-family: var(--font-display);
+  transition: background var(--dur-normal);
   display: flex;
   align-items: center;
   gap: 4px;
 }
 .saveBtn:hover {
-  box-shadow: var(--glow-accent);
-  transform: translateY(-1px);
+  background: var(--accent2);
 }
-.saveBtn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; box-shadow: none; }
+.saveBtn:disabled { opacity: 0.5; cursor: not-allowed; }
 
 .deleteBtn {
   padding: 6px 12px;
   background: transparent;
   border: 1px solid var(--border);
-  border-radius: 6px;
+  border-radius: 3px;
   color: var(--text-muted);
   font-size: 0.82rem;
-  transition: all var(--dur-fast);
+  transition: border-color var(--dur-fast), color var(--dur-fast);
   display: flex;
   align-items: center;
   gap: 4px;
@@ -268,7 +269,7 @@
   padding: 4px 8px;
   background: transparent;
   border: 1px solid var(--border);
-  border-radius: 6px;
+  border-radius: 3px;
   font-size: 0.82rem;
   opacity: 0.4;
   transition: opacity var(--dur-fast);
@@ -293,8 +294,9 @@
   padding: 2px 8px;
   background: var(--accent-dim);
   color: var(--accent);
-  border-radius: 10px;
+  border-radius: 3px;
   font-size: 0.75rem;
+  font-family: var(--font-display);
 }
 
 .tagRemove {
@@ -345,7 +347,7 @@
   line-height: 1.7;
   resize: none;
   outline: none;
-  font-family: inherit;
+  font-family: var(--font-body);
 }
 .contentInput::placeholder { color: var(--text-muted); }
 

@@ -29,6 +29,7 @@
   font-size: 1.1rem;
   font-weight: 700;
   line-height: 1;
+  font-family: var(--font-display);
 }
 
 .progressWrap {
@@ -43,9 +44,7 @@
 .progressBar {
   position: absolute;
   left: 0; top: 0; bottom: 0;
-  background: linear-gradient(90deg, var(--accent) 0%, var(--accent2) 50%, var(--accent) 100%);
-  background-size: 200% 100%;
-  animation: shimmer 2s linear infinite;
+  background: var(--accent);
   border-radius: 2px;
   transition: width 0.4s ease;
 }
@@ -71,15 +70,14 @@
   padding: 8px 14px;
   background: var(--surface2);
   border: 1px solid var(--border);
-  border-radius: 8px;
+  border-radius: 3px;
   color: var(--text);
   font-size: 0.88rem;
-  transition: border-color var(--dur-normal), box-shadow var(--dur-normal);
+  transition: border-color var(--dur-normal);
 }
 .input:focus {
   outline: none;
   border-color: var(--accent);
-  box-shadow: 0 0 0 3px var(--accent-dim);
   background: var(--surface);
 }
 .input::placeholder { color: var(--text-muted); }
@@ -91,7 +89,7 @@
   padding: 7px 10px;
   background: var(--surface2);
   border: 1px solid var(--border);
-  border-radius: 8px;
+  border-radius: 3px;
   cursor: pointer;
 }
 
@@ -110,21 +108,21 @@
   align-items: center;
   gap: 5px;
   padding: 8px 18px;
-  background: var(--grad-accent);
+  background: var(--accent);
   color: #fff;
   border: none;
-  border-radius: 8px;
+  border-radius: 3px;
   font-size: 0.85rem;
   font-weight: 600;
-  transition: box-shadow var(--dur-normal), transform var(--dur-fast);
+  font-family: var(--font-display);
+  transition: background var(--dur-normal);
   white-space: nowrap;
   flex-shrink: 0;
 }
 .addBtn:hover {
-  box-shadow: var(--glow-accent);
-  transform: translateY(-1px);
+  background: var(--accent2);
 }
-.addBtn:disabled { opacity: 0.45; cursor: not-allowed; transform: none; box-shadow: none; }
+.addBtn:disabled { opacity: 0.45; cursor: not-allowed; }
 
 /* ── 툴바 ── */
 .toolbar {
@@ -145,16 +143,15 @@
   padding: 6px 10px 6px 30px;
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 7px;
+  border-radius: 3px;
   color: var(--text);
   font-size: 0.82rem;
   width: 180px;
-  transition: border-color var(--dur-normal), box-shadow var(--dur-normal);
+  transition: border-color var(--dur-normal);
 }
 .searchInput:focus {
   outline: none;
   border-color: var(--accent);
-  box-shadow: 0 0 0 3px var(--accent-dim);
 }
 
 .filterGroup {
@@ -167,7 +164,7 @@
   padding: 5px 11px;
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 6px;
+  border-radius: 3px;
   color: var(--text-muted);
   font-size: 0.78rem;
   cursor: pointer;
@@ -184,7 +181,7 @@
   padding: 5px 10px;
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 7px;
+  border-radius: 3px;
   color: var(--text);
   font-size: 0.78rem;
 }
@@ -231,6 +228,7 @@
   gap: 6px;
   font-size: 0.82rem;
   font-weight: 600;
+  font-family: var(--font-display);
 }
 
 .colTodo .colLabel        { color: var(--text-muted); }
@@ -240,11 +238,12 @@
 .colCount {
   background: var(--surface2);
   border: 1px solid var(--border);
-  border-radius: 10px;
+  border-radius: 3px;
   padding: 1px 8px;
   font-size: 0.72rem;
   color: var(--text-muted);
   font-weight: 500;
+  font-family: var(--font-display);
 }
 
 .colBody {
@@ -264,7 +263,7 @@
   color: var(--text-muted);
   opacity: 0.6;
   border: 1.5px dashed var(--border-bright);
-  border-radius: 8px;
+  border-radius: 6px;
 }
 
 /* ── 카드 ── */
@@ -272,14 +271,13 @@
   background: var(--surface);
   border: 1px solid var(--border);
   border-left: 3px solid;
-  border-radius: 8px;
+  border-radius: 6px;
   padding: 0.75rem 0.875rem;
-  transition: box-shadow var(--dur-normal), transform var(--dur-fast);
+  transition: border-color var(--dur-normal);
   cursor: default;
 }
 .card:hover {
-  box-shadow: 0 4px 24px rgba(0,0,0,0.3), 0 0 0 1px var(--border-bright);
-  transform: translateY(-2px);
+  border-color: var(--border-bright);
 }
 
 .cardTitle {
@@ -287,6 +285,7 @@
   line-height: 1.45;
   margin-bottom: 0.625rem;
   word-break: break-word;
+  font-family: var(--font-body);
 }
 
 .cardFooter {
@@ -300,9 +299,10 @@
   padding: 2px 6px;
   background: transparent;
   border: 1px solid var(--border);
-  border-radius: 5px;
+  border-radius: 3px;
   font-size: 0.7rem;
   font-weight: 600;
+  font-family: var(--font-display);
   cursor: pointer;
   outline: none;
   transition: border-color var(--dur-fast);
@@ -320,7 +320,7 @@
   justify-content: center;
   width: 26px;
   height: 26px;
-  border-radius: 6px;
+  border-radius: 3px;
   background: var(--surface2);
   border: 1px solid var(--border);
   color: var(--text-muted);
@@ -328,7 +328,7 @@
   flex-shrink: 0;
 }
 .actionBtn:hover {
-  background: var(--grad-accent);
+  background: var(--accent);
   color: #fff;
   border-color: transparent;
 }

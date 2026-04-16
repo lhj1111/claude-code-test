@@ -14,31 +14,20 @@
   padding: 0 1.25rem;
   height: 52px;
   background: var(--header-bg);
-  backdrop-filter: blur(20px) saturate(180%);
   border-bottom: 1px solid var(--border);
-  position: sticky;
-}
-
-.header::after {
-  content: '';
-  position: absolute;
-  bottom: 0; left: 0; right: 0;
-  height: 1px;
-  background: var(--grad-accent);
-  opacity: 0.4;
 }
 
 .sidebarToggle {
   width: 32px;
   height: 32px;
-  border-radius: 8px;
+  border-radius: var(--radius-sm);
   border: 1px solid var(--border);
   background: var(--surface2);
   color: var(--text-muted);
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all var(--dur-fast);
+  transition: color var(--dur-fast), border-color var(--dur-fast), background var(--dur-fast);
   flex-shrink: 0;
 }
 .sidebarToggle:hover {
@@ -53,10 +42,7 @@
   font-size: 0.95rem;
   letter-spacing: -0.02em;
   margin-right: auto;
-  background: var(--grad-accent);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--text-bright);
 }
 
 .nav {
@@ -69,7 +55,7 @@
   align-items: center;
   gap: 5px;
   padding: 5px 12px;
-  border-radius: 6px;
+  border-radius: var(--radius-sm);
   font-size: 0.82rem;
   color: var(--text-muted);
   transition: color var(--dur-normal), background var(--dur-normal);
@@ -89,14 +75,14 @@
 .themeBtn {
   width: 32px;
   height: 32px;
-  border-radius: 8px;
+  border-radius: var(--radius-sm);
   border: 1px solid var(--border);
   background: var(--surface2);
   color: var(--text-muted);
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all var(--dur-fast);
+  transition: color var(--dur-fast), border-color var(--dur-fast), background var(--dur-fast);
   flex-shrink: 0;
 }
 .themeBtn:hover {
@@ -118,7 +104,6 @@
   position: fixed;
   inset: 52px 0 0 0;
   background: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(4px);
   z-index: 150;
 }
 
@@ -130,14 +115,13 @@
   bottom: 0;
   width: 240px;
   background: var(--header-bg);
-  backdrop-filter: blur(24px) saturate(180%);
   border-right: 1px solid var(--border-bright);
   display: flex;
   flex-direction: column;
   z-index: 160;
   transform: translateX(-100%);
   transition: transform var(--dur-normal) var(--ease-smooth);
-  box-shadow: 4px 0 32px rgba(0, 0, 0, 0.2);
+  box-shadow: var(--shadow);
 }
 
 .sidebarOpen {
@@ -164,14 +148,14 @@
 .sidebarCloseBtn {
   width: 24px;
   height: 24px;
-  border-radius: 6px;
+  border-radius: var(--radius-sm);
   border: 1px solid var(--border);
   background: transparent;
   color: var(--text-muted);
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all var(--dur-fast);
+  transition: color var(--dur-fast), background var(--dur-fast), border-color var(--dur-fast);
 }
 .sidebarCloseBtn:hover {
   color: var(--accent);
@@ -191,12 +175,12 @@
   align-items: center;
   gap: 9px;
   padding: 9px 12px;
-  border-radius: 8px;
+  border-radius: var(--radius-sm);
   font-size: 0.85rem;
   color: var(--text-muted);
   text-decoration: none;
   border: 1px solid transparent;
-  transition: color var(--dur-normal), background var(--dur-normal), border-color var(--dur-normal), box-shadow var(--dur-normal);
+  transition: color var(--dur-normal), background var(--dur-normal), border-color var(--dur-normal);
 }
 
 .sidebarLink:hover {
@@ -211,9 +195,8 @@
 .sidebarLink:nth-child(4) { --icon-color: var(--red); }
 
 .sidebarLinkActive {
-  background: var(--grad-surface);
+  background: var(--accent-dim);
   border: 1px solid var(--border-bright);
-  box-shadow: var(--glow-accent);
   color: var(--accent);
   font-weight: 600;
 }
