@@ -36,7 +36,7 @@ export default function Home() {
   const { data: noteCount = 0 } = useQuery({ queryKey: ['note-count'], queryFn: () => fetchCount('/api/notes') })
   const { data: summaryCount = 0 } = useQuery({ queryKey: ['summary-count'], queryFn: () => fetchCount('/api/summaries') })
 
-  const apps = [
+  const topApps = [
     {
       to: '/todo',
       icon: CheckSquare,
@@ -59,83 +59,96 @@ export default function Home() {
       color: 'green' as const,
       title: 'Data Visualizer',
       desc: 'CSV 업로드 · 5종 차트 · 통계',
-    },
-    {
-      to: '/youtube-summary',
-      icon: Play,
-      color: 'purple' as const,
-      title: 'YouTube Summary',
-      desc: 'AI 요약 · 카테고리 · 검색 · 메모',
-      stat: { value: summaryCount, label: 'saved' },
+      stat: null,
     },
   ]
+
+  const wideApp = {
+    to: '/youtube-summary',
+    icon: Play,
+    color: 'purple' as const,
+    title: 'YouTube Summary',
+    desc: 'AI 요약 · 카테고리 · 검색 · 메모',
+    stat: { value: summaryCount, label: 'saved' },
+  }
 
   return (
     <div className={styles.page}>
 
-      {/* ── Identity Strip ── */}
-      <div className={styles.identity}>
-        <div className={styles.identityLeft}>
-          <span className={styles.pulse} />
-          <span className={styles.wordmark}>Test Lab</span>
-          <span className={styles.version}>v0.3.0</span>
-        </div>
-        <div className={styles.identityStats}>
-          <span className={styles.identityStat}>
-            <CheckSquare size={13} />
-            <strong>{todoCount}</strong> todos
-          </span>
-          <span className={styles.identityStat}>
-            <FileText size={13} />
-            <strong>{noteCount}</strong> notes
-          </span>
-          <span className={styles.identityStat}>
-            <Play size={13} />
-            <strong>{summaryCount}</strong> summaries
-          </span>
-        </div>
+      {/* ── Lab Header ── */}
+      <div className={styles.lab}>
+        <h1 className={styles.labTitle}>Test Lab</h1>
+        <p className={styles.labSubtitle}>풀스택 실험실 — React · Hono · PostgreSQL</p>
       </div>
 
-      {/* ── App Launchpad ── */}
-      <div className={styles.launchpad}>
-        {apps.map((app) => {
-          const Icon = app.icon
+      {/* ── App Grid ── */}
+      <div className={styles.appGrid}>
+        {/* Top row: 3 equal cards */}
+        <div className={styles.topRow}>
+          {topApps.map((app) => {
+            const Icon = app.icon
+            return (
+              <Link
+                key={app.to}
+                to={app.to}
+                className={`${styles.card} ${styles[`card_${app.color}`]}`}
+              >
+                <div className={styles.cardHeader}>
+                  <div className={`${styles.cardIcon} ${styles[`icon_${app.color}`]}`}>
+                    <Icon size={22} strokeWidth={1.8} />
+                  </div>
+                  <span className={styles.cardTitle}>{app.title}</span>
+                </div>
+                <p className={styles.cardDesc}>{app.desc}</p>
+                <div className={styles.cardFooter}>
+                  {app.stat ? (
+                    <div className={styles.cardStat}>
+                      <span className={styles.cardStatNum}>{app.stat.value}</span>
+                      <span className={styles.cardStatLabel}>{app.stat.label}</span>
+                    </div>
+                  ) : (
+                    <div />
+                  )}
+                  <span className={styles.cardArrow}><ArrowRight size={14} /></span>
+                </div>
+              </Link>
+            )
+          })}
+        </div>
+
+        {/* Bottom row: 1 wide card */}
+        {(() => {
+          const Icon = wideApp.icon
           return (
             <Link
-              key={app.to}
-              to={app.to}
-              className={`${styles.tile} ${styles[`tile_${app.color}`]}`}
+              to={wideApp.to}
+              className={`${styles.card} ${styles.cardWide} ${styles[`card_${wideApp.color}`]}`}
             >
-              <div className={styles.tileGlow} />
-              <div className={styles.tileHeader}>
-                <div className={`${styles.tileIcon} ${styles[`icon_${app.color}`]}`}>
-                  <Icon size={24} strokeWidth={1.8} />
+              <div className={styles.cardHeader}>
+                <div className={`${styles.cardIcon} ${styles[`icon_${wideApp.color}`]}`}>
+                  <Icon size={22} strokeWidth={1.8} />
                 </div>
-                <div className={styles.tileMeta}>
-                  <span className={styles.tileTitle}>{app.title}</span>
-                  <span className={styles.tileDesc}>{app.desc}</span>
-                </div>
+                <span className={styles.cardTitle}>{wideApp.title}</span>
               </div>
-              <div className={styles.tileFooter}>
-                {app.stat ? (
-                  <div className={styles.tileStat}>
-                    <span className={styles.tileStatNum}>{app.stat.value}</span>
-                    <span className={styles.tileStatLabel}>{app.stat.label}</span>
+              <p className={styles.cardDesc}>{wideApp.desc}</p>
+              <div className={styles.cardFooter}>
+                {wideApp.stat ? (
+                  <div className={styles.cardStat}>
+                    <span className={styles.cardStatNum}>{wideApp.stat.value}</span>
+                    <span className={styles.cardStatLabel}>{wideApp.stat.label}</span>
                   </div>
                 ) : (
                   <div />
                 )}
-                <span className={styles.tileLaunch}>
-                  Launch <ArrowRight size={14} className={styles.tileLaunchArrow} />
-                </span>
+                <span className={styles.cardArrow}><ArrowRight size={14} /></span>
               </div>
             </Link>
           )
-        })}
+        })()}
       </div>
 
-      {/* ── System Footer ── */}
-      <div className={styles.systemFooter}>
+      {/* ── System Info ── */}
+      <div className={styles.systemInfo}>
         <div className={styles.techTags}>
           {TECH_TAGS.map(({ label, color }) => (
             <span key={label} className={`${styles.techPill} ${styles[`pill_${color}`]}`}>

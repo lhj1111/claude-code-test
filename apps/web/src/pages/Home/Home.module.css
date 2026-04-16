@@ -1,281 +1,162 @@
 .page {
-  max-width: 900px;
-  padding: 2.5rem 2rem 5rem;
+  max-width: 840px;
+  padding: 3rem 2rem 5rem;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   gap: 2rem;
 }
 
-/* ── Identity Strip ── */
-.identity {
+/* ── Lab Header ── */
+.lab {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0.875rem 1.25rem;
-  background: var(--surface);
-  border: 1px solid var(--border-bright);
-  border-radius: 14px;
-  backdrop-filter: blur(12px);
-  animation: fadeUp 0.4s var(--ease-smooth) backwards;
+  flex-direction: column;
+  gap: 0.375rem;
 }
 
-.identityLeft {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-}
-
-.pulse {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--green);
-  box-shadow: 0 0 8px var(--green);
-  animation: pulse-glow-green 2.4s ease-in-out infinite;
-  flex-shrink: 0;
-}
-
-@keyframes pulse-glow-green {
-  0%, 100% { box-shadow: 0 0 4px var(--green); }
-  50%      { box-shadow: 0 0 12px var(--green), 0 0 24px var(--green); }
-}
-
-.wordmark {
+.labTitle {
   font-family: var(--font-display);
-  font-size: 1rem;
-  font-weight: 700;
+  font-size: clamp(1.8rem, 1.4rem + 2vw, 2.8rem);
+  font-weight: 600;
   letter-spacing: -0.02em;
-  background: var(--grad-accent);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--text-bright);
+  line-height: 1.1;
 }
 
-.version {
-  font-size: 0.68rem;
-  color: var(--text-muted);
-  background: var(--surface2);
-  border: 1px solid var(--border);
-  padding: 2px 8px;
-  border-radius: 10px;
-  font-family: var(--font-display);
-}
-
-.identityStats {
-  display: flex;
-  align-items: center;
-  gap: 1.25rem;
-}
-
-.identityStat {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  font-size: 0.75rem;
+.labSubtitle {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
   color: var(--text-muted);
 }
 
-.identityStat strong {
-  font-family: var(--font-display);
-  font-weight: 700;
-  color: var(--text);
-  font-size: 0.85rem;
+/* ── App Grid ── */
+.appGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
-.identityStat svg {
-  opacity: 0.5;
-}
-
-/* ── App Launchpad ── */
-.launchpad {
+.topRow {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 14px;
-  animation: fadeUp 0.5s var(--ease-smooth) 0.08s backwards;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
 }
 
-.tile {
-  position: relative;
-  overflow: hidden;
+/* ── Cards ── */
+.card {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  min-height: 210px;
-  padding: 1.5rem 1.5rem 1.25rem;
+  min-height: 180px;
+  padding: 1.25rem 1.25rem 1.1rem;
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 16px;
-  transition:
-    transform var(--dur-normal) var(--ease-smooth),
-    border-color var(--dur-normal) var(--ease-smooth),
-    box-shadow 0.3s var(--ease-smooth);
-  will-change: transform;
+  border-left: 3px solid var(--border);
+  border-radius: 6px;
+  transition: border-color 0.15s ease;
+  cursor: pointer;
 }
 
-.tile:hover {
-  transform: translateY(-4px);
+.card:hover {
+  border-color: var(--border-bright);
 }
 
-/* Color-specific hover borders + glow */
-.tile_accent:hover {
-  border-color: rgba(0, 212, 255, 0.5);
-  box-shadow: 0 8px 40px rgba(0, 212, 255, 0.18);
-}
-.tile_blue:hover {
-  border-color: rgba(77, 158, 255, 0.5);
-  box-shadow: 0 8px 40px rgba(77, 158, 255, 0.18);
-}
-.tile_green:hover {
-  border-color: rgba(0, 255, 136, 0.45);
-  box-shadow: 0 8px 40px rgba(0, 255, 136, 0.15);
-}
-.tile_purple:hover {
-  border-color: rgba(179, 71, 255, 0.5);
-  box-shadow: 0 8px 40px rgba(179, 71, 255, 0.18);
+.card_accent { border-left-color: var(--accent); }
+.card_blue   { border-left-color: var(--blue); }
+.card_green  { border-left-color: var(--green); }
+.card_purple { border-left-color: var(--purple); }
+
+.card_accent:hover { border-left-color: var(--accent); border-color: var(--accent); }
+.card_blue:hover   { border-left-color: var(--blue);   border-color: var(--blue); }
+.card_green:hover  { border-left-color: var(--green);  border-color: var(--green); }
+.card_purple:hover { border-left-color: var(--purple); border-color: var(--purple); }
+
+.cardWide {
+  min-height: auto;
+  padding: 1.25rem 1.5rem;
 }
 
-/* ── Glow Blob ── */
-.tileGlow {
-  position: absolute;
-  top: -40px;
-  right: -40px;
-  width: 140px;
-  height: 140px;
-  border-radius: 50%;
-  filter: blur(32px);
-  opacity: 0.45;
-  pointer-events: none;
-  transition: opacity 0.35s var(--ease-smooth);
-}
-
-.tile:hover .tileGlow {
-  opacity: 0.85;
-}
-
-.tile_accent .tileGlow  { background: radial-gradient(circle, rgba(0, 212, 255, 0.4), transparent 70%); }
-.tile_blue .tileGlow    { background: radial-gradient(circle, rgba(77, 158, 255, 0.4), transparent 70%); }
-.tile_green .tileGlow   { background: radial-gradient(circle, rgba(0, 255, 136, 0.35), transparent 70%); }
-.tile_purple .tileGlow  { background: radial-gradient(circle, rgba(179, 71, 255, 0.4), transparent 70%); }
-
-/* ── Tile Content ── */
-.tileHeader {
+/* ── Card Content ── */
+.cardHeader {
   display: flex;
-  align-items: flex-start;
-  gap: 14px;
-  position: relative;
-  z-index: 1;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 0.625rem;
 }
 
-.tileIcon {
-  width: 48px;
-  height: 48px;
-  border-radius: 14px;
+.cardIcon {
+  width: 36px;
+  height: 36px;
+  border-radius: 6px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  transition: transform var(--dur-normal) var(--ease-smooth);
+  background: var(--surface2);
+  border: 1px solid var(--border);
 }
 
-.tile:hover .tileIcon {
-  transform: scale(1.05);
-}
+.icon_accent { color: var(--accent); }
+.icon_blue   { color: var(--blue); }
+.icon_green  { color: var(--green); }
+.icon_purple { color: var(--purple); }
 
-.icon_accent {
-  background: linear-gradient(135deg, rgba(0, 212, 255, 0.2) 0%, rgba(0, 212, 255, 0.06) 100%);
-  color: var(--accent);
-  border: 1px solid rgba(0, 212, 255, 0.2);
-}
-.icon_blue {
-  background: linear-gradient(135deg, rgba(77, 158, 255, 0.2) 0%, rgba(77, 158, 255, 0.06) 100%);
-  color: var(--blue);
-  border: 1px solid rgba(77, 158, 255, 0.2);
-}
-.icon_green {
-  background: linear-gradient(135deg, rgba(0, 255, 136, 0.2) 0%, rgba(0, 255, 136, 0.06) 100%);
-  color: var(--green);
-  border: 1px solid rgba(0, 255, 136, 0.2);
-}
-.icon_purple {
-  background: linear-gradient(135deg, rgba(179, 71, 255, 0.2) 0%, rgba(179, 71, 255, 0.06) 100%);
-  color: var(--purple);
-  border: 1px solid rgba(179, 71, 255, 0.2);
-}
-
-.tileMeta {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  padding-top: 4px;
-}
-
-.tileTitle {
-  font-size: 1.15rem;
-  font-weight: 800;
+.cardTitle {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 600;
   letter-spacing: -0.01em;
   color: var(--text-bright);
 }
 
-.tileDesc {
+.cardDesc {
+  font-family: var(--font-body);
   font-size: 0.78rem;
   color: var(--text-muted);
   line-height: 1.5;
+  flex: 1;
+  margin-bottom: 0.875rem;
 }
 
-/* ── Tile Footer ── */
-.tileFooter {
+/* ── Card Footer ── */
+.cardFooter {
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
-  position: relative;
-  z-index: 1;
 }
 
-.tileStat {
+.cardStat {
   display: flex;
   align-items: baseline;
-  gap: 6px;
+  gap: 5px;
 }
 
-.tileStatNum {
+.cardStatNum {
   font-family: var(--font-display);
   font-size: 1.5rem;
-  font-weight: 800;
+  font-weight: 700;
   letter-spacing: -0.03em;
   color: var(--text-bright);
 }
 
-.tileStatLabel {
+.cardStatLabel {
   font-size: 0.72rem;
   color: var(--text-muted);
 }
 
-.tileLaunch {
+.cardArrow {
   display: flex;
   align-items: center;
-  gap: 4px;
-  font-size: 0.78rem;
-  font-weight: 600;
   color: var(--text-muted);
-  transition: color 0.18s, gap 0.18s;
+  transition: color 0.15s ease;
 }
 
-.tile:hover .tileLaunch {
+.card:hover .cardArrow {
   color: var(--text-bright);
-  gap: 7px;
 }
 
-.tileLaunchArrow {
-  transition: transform 0.18s var(--ease-smooth);
-}
-
-.tile:hover .tileLaunchArrow {
-  transform: translateX(3px);
-}
-
-/* ── System Footer ── */
-.systemFooter {
+/* ── System Info ── */
+.systemInfo {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -283,8 +164,7 @@
   padding: 0.875rem 1.25rem;
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 14px;
-  animation: fadeUp 0.5s var(--ease-smooth) 0.18s backwards;
+  border-radius: 6px;
 }
 
 .techTags {
@@ -295,20 +175,21 @@
 }
 
 .techPill {
-  padding: 2px 9px;
-  border-radius: 6px;
+  padding: 2px 6px;
+  border-radius: 3px;
   font-size: 0.68rem;
   font-weight: 500;
+  font-family: var(--font-display);
   background: var(--surface2);
   border: 1px solid var(--border);
   color: var(--text-muted);
   white-space: nowrap;
 }
 
-.pill_accent { border-color: rgba(0, 212, 255, 0.2); color: var(--accent); }
-.pill_blue   { border-color: rgba(77, 158, 255, 0.2); color: var(--blue); }
-.pill_green  { border-color: rgba(0, 255, 136, 0.2); color: var(--green); }
-.pill_purple { border-color: rgba(179, 71, 255, 0.2); color: var(--purple); }
+.pill_accent { border-color: var(--accent); color: var(--accent); }
+.pill_blue   { border-color: var(--blue);   color: var(--blue); }
+.pill_green  { border-color: var(--green);  color: var(--green); }
+.pill_purple { border-color: var(--purple); color: var(--purple); }
 
 .archStrip {
   display: flex;
@@ -350,36 +231,16 @@
     gap: 1.25rem;
   }
 
-  .identity {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.75rem;
-  }
-
-  .identityStats {
-    gap: 0.875rem;
-    flex-wrap: wrap;
-  }
-
-  .launchpad {
+  .topRow {
     grid-template-columns: 1fr;
     gap: 10px;
   }
 
-  .tile {
-    min-height: 160px;
-    padding: 1.25rem 1.25rem 1.1rem;
+  .card {
+    min-height: auto;
   }
 
-  .tileTitle {
-    font-size: 1rem;
-  }
-
-  .tileStatNum {
-    font-size: 1.25rem;
-  }
-
-  .systemFooter {
+  .systemInfo {
     flex-direction: column;
     align-items: flex-start;
     gap: 0.875rem;
